@@ -18,7 +18,7 @@ internal class Program
         Weapon weapon = new Weapon(maxAmmo, ammo, magFixedMtSec, isAuto);
         ShowControls();
 
-        while (true)
+        while (!stopTheGame)
         {
 
             bool stopTheGame = false;
@@ -59,7 +59,6 @@ internal class Program
                     ShowControls();
                     break;
             }
-            if (stopTheGame) break;
         }
     }
 
