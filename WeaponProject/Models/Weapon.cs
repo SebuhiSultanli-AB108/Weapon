@@ -5,14 +5,13 @@ class Weapon
     private int _maxAmmo;
     private int _ammo;
     private int _magFixedMtSec;
-    private bool _isAuto;
+    private bool FireMode = true;
 
-    public Weapon(int maxAmmo, int ammo, int magFixedMtSec, bool isAuto)
+    public Weapon(int maxAmmo, int ammo, int magFixedMtSec)
     {
         MaxAmmo = maxAmmo;
         Ammo = ammo;
         MagFixedMtSec = magFixedMtSec;
-        _isAuto = isAuto;
     }
 
     public int MaxAmmo
@@ -47,11 +46,6 @@ class Weapon
         set { _magFixedMtSec = value; }
     }
 
-    public bool IsAuto
-    {
-        get { return _isAuto; }
-        set { _isAuto = value; }
-    }
 
     public void Shoot()
     {
@@ -67,7 +61,7 @@ class Weapon
     {
         if (Ammo == 0)
             AutoReload();
-        if (!IsAuto) Shoot();
+        if (!FireMode) Shoot();
         else
         {
             float magMtSec;
@@ -103,10 +97,11 @@ class Weapon
     {
         Ammo += ammo;
     }
-    public void ChangeFireMode(bool isAuto)
+    public void ChangeFireMode()
     {
-        IsAuto = isAuto;
-        if (isAuto) Console.WriteLine("Fire mode: Auto");
+        if (FireMode) FireMode = false;
+        else FireMode = true;
+        if (FireMode) Console.WriteLine("Fire mode: Auto");
         else Console.WriteLine("Fire mode: Single");
     }
 }

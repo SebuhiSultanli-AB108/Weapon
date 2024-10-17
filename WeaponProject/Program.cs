@@ -2,6 +2,10 @@
 
 namespace Test2;
 
+//  /\_/\
+// ( o.o )
+//   >^<
+
 internal class Program
 {
     static void Main()
@@ -13,15 +17,13 @@ internal class Program
         int ammo = Convert.ToInt32(Console.ReadLine());
         Console.Write("Mag Fixed Empty Seconds: ");
         int magFixedMtSec = Convert.ToInt32(Console.ReadLine());
-        Console.Write("Is Auto(true/false): ");
-        bool isAuto = Convert.ToBoolean(Console.ReadLine());
-        Weapon weapon = new Weapon(maxAmmo, ammo, magFixedMtSec, isAuto);
+        Weapon weapon = new Weapon(maxAmmo, ammo, magFixedMtSec);
         ShowControls();
 
+        bool stopTheGame = false;
         while (!stopTheGame)
         {
 
-            bool stopTheGame = false;
             int input = Convert.ToInt32(Console.ReadLine());
 
             switch (input)
@@ -33,11 +35,7 @@ internal class Program
                     weapon.Fire();
                     break;
                 case 2:
-                    Console.Write("Is Auto(true/false): ");
-                    bool Auto = Convert.ToBoolean(Console.ReadLine());
-                    Console.WriteLine(Auto);
-                    weapon.ChangeFireMode(Auto);
-                    Console.WriteLine(weapon.IsAuto);
+                    weapon.ChangeFireMode();
                     break;
                 case 3:
                     if (weapon.GetRemainBulletCount() == 0) Console.WriteLine("Mag is full!");
